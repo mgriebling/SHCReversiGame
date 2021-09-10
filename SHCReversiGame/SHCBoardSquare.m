@@ -19,8 +19,8 @@
 - (id)initWithFrame:(CGRect)frame column:(NSInteger)column row:(NSInteger)row board:(SHCReversiBoard *)board {
     self = [super initWithFrame:frame];
     if (self) {
-        _row = row;
-        _column = column;
+        _row = (int)row;
+        _column = (int)column;
         _board = board;
         
         // create the views for the playing piece graphics
@@ -60,11 +60,11 @@
     // show/hide the images based on the cell state
     BoardCellState state = [_board cellStateAtColumn:_column andRow:_row];
     
-    [UIView animateWithDuration:0.5 animations:^{
-        _whiteView.alpha = state == BoardCellStateWhitePiece ? 1.0 : 0.0;
-        _whiteView.transform = state == BoardCellStateWhitePiece ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(0, -20);
-        _blackView.alpha = state == BoardCellStateBlackPiece ? 1.0 : 0.0;
-        _blackView.transform = state == BoardCellStateBlackPiece ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(0, 20);
+    [UIView animateWithDuration:0.5 animations:^{ 
+        self->_whiteView.alpha = state == BoardCellStateWhitePiece ? 1.0 : 0.0;
+        self->_whiteView.transform = state == BoardCellStateWhitePiece ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(0, -20);
+        self->_blackView.alpha = state == BoardCellStateBlackPiece ? 1.0 : 0.0;
+        self->_blackView.transform = state == BoardCellStateBlackPiece ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(0, 20);
     }];
 
 }
